@@ -1,8 +1,0 @@
-{
-    "parent": "geology:block/rocks/rock_volcanic/dacite",
-    "textures": {
-        "topbottom": "geology:blocks/rocks/rock_volcanic/dacite_01",
-        "northsouth": "geology:blocks/rocks/rock_volcanic/dacite_02",
-        "westeast": "geology:blocks/rocks/rock_volcanic/dacite_03"
-    }
-}

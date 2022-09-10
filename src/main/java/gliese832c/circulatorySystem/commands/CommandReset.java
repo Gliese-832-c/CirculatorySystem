@@ -22,7 +22,7 @@ public class CommandReset extends CommandBase {
 
     @Override
     public String getUsage(ICommandSender sender) {
-        return "commands.circulatory_system.circulatorysystem_reset.usage";
+        return "commands.circulatorysystem.circulatorysystem_reset.usage";
     }
 
     @Override

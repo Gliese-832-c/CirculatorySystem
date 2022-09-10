@@ -1,23 +1,30 @@
+chat.circulatorysystem.sugar=Blood Sugar
+chat.circulatorysystem.obesity=Obesity
+chat.circulatorysystem.gastrointestinal=Gastrointestinal Damage
+chat.circulatorysystem.immune_system=Immunocompromisation
+
+chat.circulatorysystem.liver=Liver Damage
+chat.circulatorysystem.lungs=Lung Damage
+chat.circulatorysystem.heart=Heart Damage
+
+chat.circulatorysystem.muscles=Musculature Damage
+chat.circulatorysystem.eyes=Eye Damage
+chat.circulatorysystem.brain=Brain Damage
+
+chat.circulatorysystem.value_set=Value set!
+chat.circulatorysystem.value_null=System key does not exist!
+chat.circulatorysystem.values_reset=Values reset!
+
+
+
 itemGroup.circulatory_system.main=Circulatory System
 
-chat.circulatory_system.sugar=Diabetes
-chat.circulatory_system.obesity=Obesity
-chat.circulatory_system.gastrointestinal=Gastrointestinal System Damage
-chat.circulatory_system.immune_system=Immunocompromisation
+commands.circulatorysystem.circulatorysystem_set.usage=/circulatorysystem_set <type> <value> [player]
+commands.circulatorysystem.circulatorysystem_get.usage=/circulatorysystem_get <type> [player]
+commands.circulatorysystem.circulatorysystem_getall.usage=/circulatorysystem_getall [player]
+commands.circulatorysystem.circulatorysystem_reset.usage=/circulatorysystem_reset
 
-chat.circulatory_system.liver=Liver Damage
-chat.circulatory_system.lungs=Lung Damage
-chat.circulatory_system.heart=Heart Damage
+key.circulatorysystem=Open Circulatory System Mod GUI
 
-chat.circulatory_system.muscles=Musculature Damage
-chat.circulatory_system.eyes=Eye Damage
-chat.circulatory_system.brain=Brain Damage
-
-chat.circulatory_system.value_set=Value set!
-chat.circulatory_system.value_null=System key does not exist!
-chat.circulatory_system.values_reset=Values reset!
-
-commands.circulatory_system.circulatorysystem_set.usage=/circulatorysystem_set <type> <value> [player]
-commands.circulatory_system.circulatorysystem_get.usage=/circulatorysystem_get <type> [player]
-commands.circulatory_system.circulatorysystem_getall.usage=/circulatorysystem_getall [player]
-commands.circulatory_system.circulatorysystem_reset.usage=/circulatorysystem_reset
+gui.circulatorysystem.close=Close GUI
+gui.circulatorysystem.title=Body Stats

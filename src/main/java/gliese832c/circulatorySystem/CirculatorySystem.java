@@ -1,5 +1,6 @@
 package gliese832c.circulatorySystem;
 
+import gliese832c.circulatorySystem.gui.ModGuiHandler;
 import gliese832c.circulatorySystem.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -10,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLModIdMappingEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = CirculatorySystem.MOD_ID, name = CirculatorySystem.MOD_NAME, version = CirculatorySystem.VERSION, acceptedMinecraftVersions = CirculatorySystem.MCVERSION)
 public class CirculatorySystem {

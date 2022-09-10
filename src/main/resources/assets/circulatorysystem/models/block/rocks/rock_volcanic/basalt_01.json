@@ -1,8 +1,0 @@
-{
-    "parent": "geology:block/rocks/rock_volcanic/basalt",
-    "textures": {
-        "topbottom": "geology:blocks/rocks/rock_volcanic/basalt_01",
-        "northsouth": "geology:blocks/rocks/rock_volcanic/basalt_02",
-        "westeast": "geology:blocks/rocks/rock_volcanic/basalt_03"
-    }
-}

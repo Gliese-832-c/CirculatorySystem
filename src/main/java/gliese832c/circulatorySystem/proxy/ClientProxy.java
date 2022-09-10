@@ -1,9 +1,7 @@
 package gliese832c.circulatorySystem.proxy;
 
-//import static lach_01298.qmd.config.QMDConfig.clientPreInit;
-
 import gliese832c.circulatorySystem.CirculatorySystem;
-//import lach_01298.qmd.item.QMDArmour;
+import gliese832c.circulatorySystem.gui.EventNutritionKey;
 import gliese832c.circulatorySystem.render.CirculatorySystemRenderHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -12,16 +10,22 @@ import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.lwjgl.input.Keyboard;
 
-public class ClientProxy extends CommonProxy
-{
+public class ClientProxy extends CommonProxy {
+
+    public static KeyBinding keyCirculatorySystemGui;
+
     @Override
     public void preInit(FMLPreInitializationEvent preEvent)
     {
@@ -34,14 +38,9 @@ public class ClientProxy extends CommonProxy
     public void init(FMLInitializationEvent event)
     {
         super.init(event);
-        /*ItemColors itemcolors = Minecraft.getMinecraft().getItemColors();
-        itemcolors.registerItemColorHandler(new IItemColor()
-        {
-            public int colorMultiplier(ItemStack stack, int tintIndex)
-            {
-                return tintIndex > 0 ? -1 : ((ItemArmor) stack.getItem()).getColor(stack);
-            }
-        }, QMDArmour.helm_hev, QMDArmour.chest_hev, QMDArmour.legs_hev, QMDArmour.boots_hev);*/
+
+        ClientRegistry.registerKeyBinding(keyCirculatorySystemGui = new KeyBinding("key.circulatorysystem", Keyboard.KEY_G, "Circulatory System"));
+        MinecraftForge.EVENT_BUS.register(new EventNutritionKey());
     }
 
     @Override

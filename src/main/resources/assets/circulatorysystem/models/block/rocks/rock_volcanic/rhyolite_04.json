@@ -1,8 +1,0 @@
-{
-    "parent": "geology:block/rocks/rock_volcanic/rhyolite",
-    "textures": {
-        "topbottom": "geology:blocks/rocks/rock_volcanic/rhyolite_04",
-        "northsouth": "geology:blocks/rocks/rock_volcanic/rhyolite_01",
-        "westeast": "geology:blocks/rocks/rock_volcanic/rhyolite_02"
-    }
-}

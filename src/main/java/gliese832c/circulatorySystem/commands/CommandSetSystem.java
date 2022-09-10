@@ -24,7 +24,7 @@ public class CommandSetSystem extends CommandBase {
 
     @Override
     public String getUsage(ICommandSender sender) {
-        return "commands.circulatory_system.circulatorysystem_set.usage";
+        return "commands.circulatorysystem.circulatorysystem_set.usage";
     }
 
     @Override
