@@ -2,7 +2,6 @@ package gliese832c.circulatorySystem.proxy;
 
 import gliese832c.circulatorySystem.CirculatorySystem;
 import gliese832c.circulatorySystem.gui.EventNutritionKey;
-import gliese832c.circulatorySystem.render.CirculatorySystemRenderHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -14,6 +13,7 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -24,14 +24,13 @@ import org.lwjgl.input.Keyboard;
 
 public class ClientProxy extends CommonProxy {
 
+    public static NBTTagCompound data;
     public static KeyBinding keyCirculatorySystemGui;
 
     @Override
     public void preInit(FMLPreInitializationEvent preEvent)
     {
         super.preInit(preEvent);
-        //clientPreInit();
-        CirculatorySystemRenderHandler.init();
     }
 
     @Override

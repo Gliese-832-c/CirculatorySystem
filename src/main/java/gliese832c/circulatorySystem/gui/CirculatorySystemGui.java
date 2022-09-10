@@ -70,7 +70,8 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
         for (SystemType systemType : SystemTypes.systemTypes) {
             // Calculate percentage width for nutrition bars
 
-            double currentValue = NBTHandler.getNBTdata(player, systemType.key);
+            double currentValue = ClientProxy.data.getDouble(systemType.key);
+            //double currentValue = NBTHandler.getNBTdata(player, systemType.key);
             int systemBarDisplayWidth = (int) (currentValue * (double) NUTRITION_BAR_WIDTH);
 
             // Draw icons
@@ -85,13 +86,20 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
                     0xff000000
             );
 
+            int redChannel = (int) (255 * currentValue);
+            redChannel = 256 * 256 * Math.max(Math.min(redChannel, 255), 0);
+            int greenChannel = (int) (255 - (255 * currentValue));
+            greenChannel = 256 * Math.max(Math.min(greenChannel, 255), 0);
+            int color = redChannel + greenChannel + 0xff000000;
+
             // Draw colored bar
             drawRect(
                     left + NUTRITION_BAR_HORIZONTAL_OFFSET + labelCharacterPadding,
                     top + NUTRITION_BAR_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE),
                     left + NUTRITION_BAR_HORIZONTAL_OFFSET + systemBarDisplayWidth + labelCharacterPadding,
                     top + NUTRITION_BAR_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE) + NUTRITION_BAR_HEIGHT,
-                    systemType.color
+                    //0xff0088CC
+                    color
             );
 
             i++;
@@ -147,8 +155,8 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
             // Create percent value labels for each nutrient value
             labelList.add(label = new GuiLabel(fontRenderer, 0, left + LABEL_VALUE_HORIZONTAL_OFFSET + labelCharacterPadding, top + LABEL_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE), 0, 0, 0xffffffff));
 
-            label.addLine(getValueColorizedPercentage(NBTHandler.getNBTdata(player, systemType.key)));
-
+            label.labels.add(getValueColorizedPercentage(ClientProxy.data.getDouble(systemType.key)));
+            //fontRenderer.drawString();
             i++;
         }
     }
@@ -182,5 +190,11 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
     @Override
     public boolean doesGuiPauseGame() {
         return false;
+    }
+
+
+    @Override
+    public void updateScreen() {
+        redrawLabels();
     }
 }

@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -24,8 +23,7 @@ public class SystemEffects {
     public NBTTagCompound updateSystemTypes(EntityPlayer player, NBTTagCompound data) {
 
         for (SystemType systemType : SystemTypes.systemTypes) {
-            //data.setDouble(systemType.key, data.getDouble(systemType.key) * 0.9999995d);
-            data.setDouble(systemType.key, data.getDouble(systemType.key) * 0.9999d);
+            data.setDouble(systemType.key, data.getDouble(systemType.key) * 0.9999995d);
         }
 
         return data;
