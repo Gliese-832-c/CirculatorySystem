@@ -1,0 +1,14 @@
+[{
+  "modid": "circulatorysystem",
+  "name": "Circulatory System",
+  "description": "A mod adding a complex simulation of various organs of the human body to the game.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Gliese 832 c"],
+  "credits": "Internet for ideas and biology information",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}]
