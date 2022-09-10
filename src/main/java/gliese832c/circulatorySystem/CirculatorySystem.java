@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class CirculatorySystem {
     public static final String MOD_NAME = "Circulatory System";
     public static final String MOD_ID = "circulatorysystem";
-    public static final String VERSION = "@VERSION@";
+    public static final String VERSION = "0.1.0";
     public static final String MCVERSION = "1.12.2";
 
 

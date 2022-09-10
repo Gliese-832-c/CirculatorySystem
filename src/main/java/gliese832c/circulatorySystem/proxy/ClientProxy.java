@@ -2,6 +2,8 @@ package gliese832c.circulatorySystem.proxy;
 
 import gliese832c.circulatorySystem.CirculatorySystem;
 import gliese832c.circulatorySystem.gui.EventNutritionKey;
+import gliese832c.circulatorySystem.gui.EventTexture;
+import gliese832c.circulatorySystem.gui.EventWorldTick;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

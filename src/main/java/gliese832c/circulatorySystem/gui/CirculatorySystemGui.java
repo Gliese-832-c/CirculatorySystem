@@ -2,14 +2,19 @@ package gliese832c.circulatorySystem.gui;
 
 import gliese832c.circulatorySystem.CirculatorySystem;
 import gliese832c.circulatorySystem.proxy.ClientProxy;
-import gliese832c.circulatorySystem.systems.NBTHandler;
 import gliese832c.circulatorySystem.systems.SystemType;
 import gliese832c.circulatorySystem.systems.SystemTypes;
+import gliese832c.circulatorySystem.util.CirculatorySystemLogger;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
 
@@ -75,7 +80,18 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
             int systemBarDisplayWidth = (int) (currentValue * (double) NUTRITION_BAR_WIDTH);
 
             // Draw icons
-            itemRender.renderItemIntoGUI(systemType.item, left + NUTRITION_ICON_HORIZONTAL_OFFSET, top + NUTRITION_ICON_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE));
+            //itemRender.renderItemIntoGUI(systemType.item, left + NUTRITION_ICON_HORIZONTAL_OFFSET, top + NUTRITION_ICON_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE));
+
+            ResourceLocation currentResourceLocation = systemType.resourceLocation;
+            //mc.getTextureManager().bindTexture(currentResourceLocation);
+            //drawTexturedModalRect(left + NUTRITION_ICON_HORIZONTAL_OFFSET, top + NUTRITION_ICON_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE), 0, 0, 16, 16);
+            //drawTexturedModalRect(left + NUTRITION_ICON_HORIZONTAL_OFFSET, top + NUTRITION_ICON_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE), TextureAtlasSprite, 16, 16) {
+
+            GlStateManager.color(1F, 1F, 1F);
+            TextureAtlasSprite sprite = mc.getTextureMapBlocks().getAtlasSprite(currentResourceLocation.toString());
+            CirculatorySystemLogger.getLogger().error("POOPOO: " + currentResourceLocation.toString());
+            mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+            drawTexturedModalRect(left + NUTRITION_ICON_HORIZONTAL_OFFSET, top + NUTRITION_ICON_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE), sprite, 16, 16);
 
             // Draw black background
             drawRect(
