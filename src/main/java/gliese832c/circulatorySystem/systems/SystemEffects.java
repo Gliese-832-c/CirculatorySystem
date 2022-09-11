@@ -47,8 +47,8 @@ public class SystemEffects {
     public NBTTagCompound clamp(NBTTagCompound data) {
         for (SystemType systemType : SystemTypes.systemTypes) {
             double dataValue = data.getDouble(systemType.key);
-            if (dataValue > 100.0d) {
-                data.setDouble(systemType.key, 100.0d);
+            if (dataValue > 1.0d) {
+                data.setDouble(systemType.key, 1.0d);
             } else if (dataValue < 0.0d) {
                 data.setDouble(systemType.key, 0.0d);
             }
