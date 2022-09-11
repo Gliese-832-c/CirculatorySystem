@@ -1,11 +1,13 @@
 package gliese832c.circulatorySystem.systems;
 
+import gliese832c.circulatorySystem.util.CirculatorySystemLogger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import scala.Array;
 import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
@@ -19,14 +21,15 @@ public class SystemEffects {
 
         data = passiveDecay(data);
         data = specialInteractions(data);
-        applyEffects(player, data);
+
+        ArrayList<TemporaryPotionEffectObject> potionsToApply = new ArrayList<TemporaryPotionEffectObject>();
+        applyEffects(player, data, potionsToApply);
+        potionsToApply.clear();
 
         NBTHandler.setNBTall(player, data);
     }
 
 
-
-    public ArrayList<TemporaryPotionEffectObject> potionsToApply = new ArrayList<TemporaryPotionEffectObject>();
 
     public NBTTagCompound passiveDecay(NBTTagCompound data) {
 
@@ -42,7 +45,7 @@ public class SystemEffects {
         return data;
     }
 
-    public void applyEffects(EntityPlayer player, NBTTagCompound data) {
+    public void applyEffects(EntityPlayer player, NBTTagCompound data, ArrayList<TemporaryPotionEffectObject> potionsToApply) {
 
         if (!player.isCreative() && !player.isSpectator()) {
 
@@ -50,18 +53,16 @@ public class SystemEffects {
             for (SystemType systemType : SystemTypes.systemTypes) {
                 for (gliese832c.circulatorySystem.systems.PotionEffect potionEffect : systemType.potionEffects) {
                     if (data.getDouble(systemType.key) > potionEffect.minValue && data.getDouble(systemType.key) < potionEffect.maxValue) {
-                        addPotionToApply(potionEffect.resourceLocation, potionEffect.level);
+                        addPotionToApply(potionEffect.resourceLocation, potionEffect.level, potionsToApply);
                     }
                 }
             }
 
-            applyPotionEffects(player);
+            applyPotionEffects(player, potionsToApply);
         }
-        potionsToApply.clear();
-        potionsToApply = new ArrayList<TemporaryPotionEffectObject>();
     }
 
-    private void addPotionToApply(String potionEffect, int level) {
+    private void addPotionToApply(String potionEffect, int level, ArrayList<TemporaryPotionEffectObject> potionsToApply) {
         for (TemporaryPotionEffectObject tempEffect : potionsToApply) {
             if (potionEffect.equals(tempEffect.resourceLocation)) {
                 tempEffect.levels.add(level);
@@ -72,8 +73,9 @@ public class SystemEffects {
     }
 
 
-    private void applyPotionEffects(EntityPlayer player) {
-        for (TemporaryPotionEffectObject tempEffect : potionsToApply) {
+    private void applyPotionEffects(EntityPlayer player, ArrayList<TemporaryPotionEffectObject> potionsToApply) {
+        ArrayList<TemporaryPotionEffectObject> potionsToApplyCopy = potionsToApply;
+        for (TemporaryPotionEffectObject tempEffect : potionsToApplyCopy) {
             applyPotionEffect(player, tempEffect.resourceLocation, doPotionLevelMath(tempEffect.levels));
         }
     }
@@ -91,8 +93,10 @@ public class SystemEffects {
     private int doPotionLevelMath(ArrayList<Integer> levels) {
         int tempVal = 0;
         for (int integer : levels) {
+            integer++;
             tempVal += integer * integer;
         }
-        return (int) Math.round(Math.sqrt((double) tempVal));
+        int resultingPotionEffectLevelNotAdjusted = (int) Math.round(Math.sqrt((double) tempVal));
+        return resultingPotionEffectLevelNotAdjusted - 1;
     }
 }
