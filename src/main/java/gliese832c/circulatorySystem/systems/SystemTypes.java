@@ -71,7 +71,7 @@ public class SystemTypes {
                         new PotionEffect("minecraft:weakness", 3, 0.66667, 0.83333),
                         new PotionEffect("minecraft:weakness", 4, 0.83333, Double.MAX_VALUE),
 
-                        /*new PotionEffect("minecraft:slowness", 0, 0.16667, 0.33333),
+                        new PotionEffect("minecraft:slowness", 0, 0.16667, 0.33333),
                         new PotionEffect("minecraft:slowness", 1, 0.33333, 0.5),
                         new PotionEffect("minecraft:slowness", 2, 0.5, 0.66667),
                         new PotionEffect("minecraft:slowness", 3, 0.66667, 0.83333),
@@ -87,7 +87,7 @@ public class SystemTypes {
                         new PotionEffect("minecraft:jump_boost", -2, 0.33333, 0.5),
                         new PotionEffect("minecraft:jump_boost", -3, 0.5, 0.66667),
                         new PotionEffect("minecraft:jump_boost", -4, 0.66667, 0.83333),
-                        new PotionEffect("minecraft:jump_boost", -5, 0.83333, Double.MAX_VALUE)*/
+                        new PotionEffect("minecraft:jump_boost", -5, 0.83333, Double.MAX_VALUE)
                 }))
         ));
 
