@@ -38,21 +38,22 @@ public class CommandSetSystem extends CommandBase {
             double value = 0d;
             try {
                 value = Double.parseDouble(args[1]);
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 throw new WrongUsageException(getUsage(sender), new Object[0]);
             }
-
-            EntityPlayer player = args.length == 3 ? getPlayer(server, sender, args[2]) : getCommandSenderAsPlayer(sender);
-
-            if (checkWhetherSystemTypeIsValid(args[0])) {
-                SystemType systemType = SystemTypes.getSystemTypeFromKey(args[0]);
-                NBTHandler.setNBTdata(player, systemType.key, value);
-                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§a" + I18n.translateToLocal("chat.circulatorysystem.value_set")));
+            if (value < 0.0d || value > 1.0d) {
+                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§c" + I18n.translateToLocal("chat.circulatorysystem.value_out_of_range")));
             } else {
-                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§c" + I18n.translateToLocal("chat.circulatorysystem.value_null")));
-            }
+                EntityPlayer player = args.length == 3 ? getPlayer(server, sender, args[2]) : getCommandSenderAsPlayer(sender);
 
+                if (checkWhetherSystemTypeIsValid(args[0])) {
+                    SystemType systemType = SystemTypes.getSystemTypeFromKey(args[0]);
+                    NBTHandler.setNBTdata(player, systemType.key, value);
+                    getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§a" + I18n.translateToLocal("chat.circulatorysystem.value_set")));
+                } else {
+                    getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§c" + I18n.translateToLocal("chat.circulatorysystem.value_null")));
+                }
+            }
         } else {
             throw new WrongUsageException(getUsage(sender), new Object[0]);
         }

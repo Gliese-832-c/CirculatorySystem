@@ -11,6 +11,7 @@ chat.circulatorysystem.muscles=Musculature Damage
 chat.circulatorysystem.eyes=Eye Damage
 chat.circulatorysystem.brain=Brain Damage
 
+chat.circulatorysystem.value_out_of_range=Value out of range! Please enter a value between 0.0 and 1.0.
 chat.circulatorysystem.value_set=Value set!
 chat.circulatorysystem.value_null=System key does not exist!
 chat.circulatorysystem.values_reset=Values reset!
