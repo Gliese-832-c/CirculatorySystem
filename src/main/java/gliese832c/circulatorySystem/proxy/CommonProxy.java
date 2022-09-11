@@ -6,6 +6,8 @@ import gliese832c.circulatorySystem.CirculatorySystem;
 import gliese832c.circulatorySystem.commands.CommandHandler;
 import gliese832c.circulatorySystem.gui.EventWorldTick;
 import gliese832c.circulatorySystem.gui.ModGuiHandler;
+import gliese832c.circulatorySystem.systems.ConsumablesEvent;
+import gliese832c.circulatorySystem.systems.ConsumablesList;
 import gliese832c.circulatorySystem.systems.SystemEffects;
 import gliese832c.circulatorySystem.systems.SystemTypes;
 import net.minecraft.block.Block;
@@ -19,6 +21,7 @@ public class CommonProxy
     public void preInit(FMLPreInitializationEvent preEvent)
     {
         SystemTypes.initEffectTypes();
+        ConsumablesList.initConsumablesList();
 
         MinecraftForge.EVENT_BUS.register(new EventWorldTick());
     }

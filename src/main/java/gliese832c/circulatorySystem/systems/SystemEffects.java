@@ -20,6 +20,7 @@ public class SystemEffects {
 
 
         deathScan(player, data);
+        data = clamp(data);
 
         ArrayList<TemporaryPotionEffectObject> potionsToApply = new ArrayList<TemporaryPotionEffectObject>();
         applyEffects(player, data, potionsToApply);
@@ -35,12 +36,23 @@ public class SystemEffects {
 
 
 
-    public NBTTagCompound passiveDecay(NBTTagCompound data) {
-
+    public void deathScan(EntityPlayer player, NBTTagCompound data) {
         for (SystemType systemType : SystemTypes.systemTypes) {
-            data.setDouble(systemType.key, data.getDouble(systemType.key) * 0.9999995d);
+            if (systemType.dieOn100Percent && data.getDouble(systemType.key) >= 1.0) {
+                player.attackEntityFrom(new DamageSourceCirculatorySystem("system_value_100_percent", systemType).setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
+            }
         }
+    }
 
+    public NBTTagCompound clamp(NBTTagCompound data) {
+        for (SystemType systemType : SystemTypes.systemTypes) {
+            double dataValue = data.getDouble(systemType.key);
+            if (dataValue > 100.0d) {
+                data.setDouble(systemType.key, 100.0d);
+            } else if (dataValue < 0.0d) {
+                data.setDouble(systemType.key, 0.0d);
+            }
+        }
         return data;
     }
 
@@ -49,12 +61,13 @@ public class SystemEffects {
         return data;
     }
 
-    public void deathScan(EntityPlayer player, NBTTagCompound data) {
+    public NBTTagCompound passiveDecay(NBTTagCompound data) {
+
         for (SystemType systemType : SystemTypes.systemTypes) {
-            if (systemType.dieOn100Percent && data.getDouble(systemType.key) >= 1.0) {
-                player.attackEntityFrom(new DamageSourceCirculatorySystem("system_value_100_percent", systemType).setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
-            }
+            data.setDouble(systemType.key, data.getDouble(systemType.key) * 0.9999995d);
         }
+
+        return data;
     }
 
     public void applyEffects(EntityPlayer player, NBTTagCompound data, ArrayList<TemporaryPotionEffectObject> potionsToApply) {

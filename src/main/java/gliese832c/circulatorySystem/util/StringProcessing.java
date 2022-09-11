@@ -41,4 +41,36 @@ public class StringProcessing {
         }
         return false;
     }
+
+
+
+    public static String determineDoubleColorConsumableEffect(double value) {
+        if (value <= -0.03) {
+            return "§2";
+        } else if (value > -0.03 && value <= -0.003) {
+            return "§a";
+        } else if (value > -0.003 && value < 0.003) {
+            return "§f";
+        } else if (value >= 0.003 && value < 0.01) {
+            return "§e";
+        } else if (value >= 0.01 && value < 0.03) {
+            return "§6";
+        } else if (value >= 0.03 && value < 0.1) {
+            return "§C";
+        } else if (value >= 0.1) {
+            return "§4";
+        }
+        return "§d";
+    }
+
+    public static String getValueColorizedPercentageConsumable(double value) {
+
+        double percentageValue = Math.round(value * 10000.0d) / 100.0d;
+
+        if (value > 0) {
+            return determineDoubleColorConsumableEffect(value) + "+" + percentageValue + "%";
+        } else {
+            return determineDoubleColorConsumableEffect(value) + percentageValue + "%";
+        }
+    }
 }
