@@ -37,7 +37,7 @@ public class CommandReset extends CommandBase {
             EntityPlayer player = args.length == 1 ? getPlayer(server, sender, args[0]) : getCommandSenderAsPlayer(sender);
             NBTHandler.resetAllSystemTypes(player);
 
-            getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§e" + I18n.translateToLocal("chat.circulatory_system.values_reset")));
+            getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§e" + I18n.translateToLocal("chat.circulatorysystem.values_reset")));
 
         } else {
             throw new WrongUsageException(getUsage(sender), new Object[0]);

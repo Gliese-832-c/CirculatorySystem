@@ -4,26 +4,104 @@ import gliese832c.circulatorySystem.CirculatorySystem;
 import gliese832c.circulatorySystem.util.CirculatorySystemLogger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class SystemTypes {
 
     public static ArrayList<SystemType> systemTypes = new ArrayList<SystemType>();
 
     public static void initEffectTypes() {
-        systemTypes.add(new SystemType("sugar", "chat.circulatorysystem.sugar", new ResourceLocation("minecraft", "items/sugar")));
-        systemTypes.add(new SystemType("obesity", "chat.circulatorysystem.obesity", new ResourceLocation(CirculatorySystem.MOD_ID, "organs/obesity")));
-        systemTypes.add(new SystemType("gastrointestinal", "chat.circulatorysystem.gastrointestinal", new ResourceLocation(CirculatorySystem.MOD_ID, "organs/gastrointestinal")));
-        systemTypes.add(new SystemType("immune_system", "chat.circulatorysystem.immune_system", new ResourceLocation(CirculatorySystem.MOD_ID, "organs/immune_system")));
+        systemTypes.add(new SystemType("sugar", "chat.circulatorysystem.sugar", false,
+                new ResourceLocation("minecraft", "items/sugar"),
+                new ArrayList<>(Arrays.asList(new PotionEffect[] {
+                }))
+        ));
 
-        systemTypes.add(new SystemType("liver", "chat.circulatorysystem.liver", new ResourceLocation(CirculatorySystem.MOD_ID, "organs/liver")));
-        systemTypes.add(new SystemType("lungs", "chat.circulatorysystem.lungs", new ResourceLocation(CirculatorySystem.MOD_ID, "organs/lungs")));
-        systemTypes.add(new SystemType("heart", "chat.circulatorysystem.heart", new ResourceLocation(CirculatorySystem.MOD_ID, "organs/heart")));
+        systemTypes.add(new SystemType("obesity", "chat.circulatorysystem.obesity", false,
+                new ResourceLocation(CirculatorySystem.MOD_ID, "organs/obesity"),
+                new ArrayList<>(Arrays.asList(new PotionEffect[] {
+                }))
+        ));
 
-        systemTypes.add(new SystemType("muscles", "chat.circulatorysystem.muscles", new ResourceLocation(CirculatorySystem.MOD_ID, "organs/muscles")));
-        systemTypes.add(new SystemType("eyes", "chat.circulatorysystem.eyes", new ResourceLocation(CirculatorySystem.MOD_ID, "organs/eyes")));
-        systemTypes.add(new SystemType("brain", "chat.circulatorysystem.brain", new ResourceLocation(CirculatorySystem.MOD_ID, "organs/brain")));
+        systemTypes.add(new SystemType("gastrointestinal", "chat.circulatorysystem.gastrointestinal", false,
+                new ResourceLocation(CirculatorySystem.MOD_ID, "organs/gastrointestinal"),
+                new ArrayList<>(Arrays.asList(new PotionEffect[] {
+                }))
+        ));
+
+        systemTypes.add(new SystemType("immune_system", "chat.circulatorysystem.immune_system", false,
+                new ResourceLocation(CirculatorySystem.MOD_ID, "organs/immune_system"),
+                new ArrayList<>(Arrays.asList(new PotionEffect[] {
+                }))
+        ));
+
+
+
+        systemTypes.add(new SystemType("liver", "chat.circulatorysystem.liver", false,
+                new ResourceLocation(CirculatorySystem.MOD_ID, "organs/liver"),
+                new ArrayList<>(Arrays.asList(new PotionEffect[] {
+                }))
+        ));
+
+        systemTypes.add(new SystemType("lungs", "chat.circulatorysystem.lungs", false,
+                new ResourceLocation(CirculatorySystem.MOD_ID, "organs/lungs"),
+                new ArrayList<>(Arrays.asList(new PotionEffect[] {
+                        new PotionEffect("minecraft:weakness", 1, 0.16667, 0.33333),
+                }))
+        ));
+
+        systemTypes.add(new SystemType("heart", "chat.circulatorysystem.heart", true,
+                new ResourceLocation(CirculatorySystem.MOD_ID, "organs/heart"),
+                new ArrayList<>(Arrays.asList(new PotionEffect[] {
+                        new PotionEffect("minecraft:weakness", 0, 0.16667, 0.33333),
+                }))
+        ));
+
+
+
+        systemTypes.add(new SystemType("muscles", "chat.circulatorysystem.muscles", false,
+                new ResourceLocation(CirculatorySystem.MOD_ID, "organs/muscles"),
+                new ArrayList<>(Arrays.asList(new PotionEffect[] {
+                        new PotionEffect("minecraft:weakness", 0, 0.16667, 0.33333),
+                        new PotionEffect("minecraft:weakness", 1, 0.33333, 0.5),
+                        new PotionEffect("minecraft:weakness", 2, 0.5, 0.66667),
+                        new PotionEffect("minecraft:weakness", 3, 0.66667, 0.83333),
+                        new PotionEffect("minecraft:weakness", 4, 0.83333, Double.MAX_VALUE),
+
+                        /*new PotionEffect("minecraft:slowness", 0, 0.16667, 0.33333),
+                        new PotionEffect("minecraft:slowness", 1, 0.33333, 0.5),
+                        new PotionEffect("minecraft:slowness", 2, 0.5, 0.66667),
+                        new PotionEffect("minecraft:slowness", 3, 0.66667, 0.83333),
+                        new PotionEffect("minecraft:slowness", 4, 0.83333, Double.MAX_VALUE),
+
+                        new PotionEffect("minecraft:mining_fatigue", 0, 0.16667, 0.33333),
+                        new PotionEffect("minecraft:mining_fatigue", 1, 0.33333, 0.5),
+                        new PotionEffect("minecraft:mining_fatigue", 2, 0.5, 0.66667),
+                        new PotionEffect("minecraft:mining_fatigue", 3, 0.66667, 0.83333),
+                        new PotionEffect("minecraft:mining_fatigue", 4, 0.83333, Double.MAX_VALUE),
+
+                        new PotionEffect("minecraft:jump_boost", -1, 0.16667, 0.33333),
+                        new PotionEffect("minecraft:jump_boost", -2, 0.33333, 0.5),
+                        new PotionEffect("minecraft:jump_boost", -3, 0.5, 0.66667),
+                        new PotionEffect("minecraft:jump_boost", -4, 0.66667, 0.83333),
+                        new PotionEffect("minecraft:jump_boost", -5, 0.83333, Double.MAX_VALUE)*/
+                }))
+        ));
+
+        systemTypes.add(new SystemType("eyes", "chat.circulatorysystem.eyes", false,
+                new ResourceLocation(CirculatorySystem.MOD_ID, "organs/eyes"),
+                new ArrayList<>(Arrays.asList(new PotionEffect[] {
+                }))
+        ));
+
+        systemTypes.add(new SystemType("brain", "chat.circulatorysystem.brain", true,
+                new ResourceLocation(CirculatorySystem.MOD_ID, "organs/brain"),
+                new ArrayList<>(Arrays.asList(new PotionEffect[] {
+                }))
+        ));
     }
 
     public static SystemType getSystemTypeFromKey(String key) {

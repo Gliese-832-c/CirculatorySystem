@@ -43,7 +43,7 @@ public class CommandGetSystem extends CommandBase {
                 SystemType systemType = SystemTypes.getSystemTypeFromKey(args[0]);
                 getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString(I18n.translateToLocal(systemType.chatInfoMessage) + ": " + getValueColorizedPercentage(value)));
             } else {
-                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§c" + I18n.translateToLocal("chat.circulatory_system.value_null")));
+                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§c" + I18n.translateToLocal("chat.circulatorysystem.value_null")));
             }
 
         } else {

@@ -89,7 +89,6 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
 
             GlStateManager.color(1F, 1F, 1F);
             TextureAtlasSprite sprite = mc.getTextureMapBlocks().getAtlasSprite(currentResourceLocation.toString());
-            CirculatorySystemLogger.getLogger().error("POOPOO: " + currentResourceLocation.toString());
             mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             drawTexturedModalRect(left + NUTRITION_ICON_HORIZONTAL_OFFSET, top + NUTRITION_ICON_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE), sprite, 16, 16);
 

@@ -48,9 +48,9 @@ public class CommandSetSystem extends CommandBase {
             if (checkWhetherSystemTypeIsValid(args[0])) {
                 SystemType systemType = SystemTypes.getSystemTypeFromKey(args[0]);
                 NBTHandler.setNBTdata(player, systemType.key, value);
-                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§a" + I18n.translateToLocal("chat.circulatory_system.value_set")));
+                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§a" + I18n.translateToLocal("chat.circulatorysystem.value_set")));
             } else {
-                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§c" + I18n.translateToLocal("chat.circulatory_system.value_null")));
+                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§c" + I18n.translateToLocal("chat.circulatorysystem.value_null")));
             }
 
         } else {
