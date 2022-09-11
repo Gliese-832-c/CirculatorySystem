@@ -1,13 +1,11 @@
 package gliese832c.circulatorySystem.systems;
 
-import gliese832c.circulatorySystem.util.CirculatorySystemLogger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import scala.Array;
 import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
@@ -19,12 +17,18 @@ public class SystemEffects {
         EntityPlayer player = event.player;
         NBTTagCompound data = NBTHandler.getNBTall(player);
 
-        data = passiveDecay(data);
-        data = specialInteractions(data);
+
+
+        deathScan(player, data);
 
         ArrayList<TemporaryPotionEffectObject> potionsToApply = new ArrayList<TemporaryPotionEffectObject>();
         applyEffects(player, data, potionsToApply);
         potionsToApply.clear();
+
+        data = specialInteractions(data);
+        data = passiveDecay(data);
+
+
 
         NBTHandler.setNBTall(player, data);
     }
@@ -45,15 +49,23 @@ public class SystemEffects {
         return data;
     }
 
+    public void deathScan(EntityPlayer player, NBTTagCompound data) {
+        for (SystemType systemType : SystemTypes.systemTypes) {
+            if (systemType.dieOn100Percent && data.getDouble(systemType.key) >= 1.0) {
+                player.attackEntityFrom(new DamageSourceCirculatorySystem("system_value_100_percent", systemType).setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
+            }
+        }
+    }
+
     public void applyEffects(EntityPlayer player, NBTTagCompound data, ArrayList<TemporaryPotionEffectObject> potionsToApply) {
 
         if (!player.isCreative() && !player.isSpectator()) {
 
             // This applies the potion effects as specified in SystemTypes
             for (SystemType systemType : SystemTypes.systemTypes) {
-                for (gliese832c.circulatorySystem.systems.PotionEffect potionEffect : systemType.potionEffects) {
-                    if (data.getDouble(systemType.key) > potionEffect.minValue && data.getDouble(systemType.key) < potionEffect.maxValue) {
-                        addPotionToApply(potionEffect.resourceLocation, potionEffect.level, potionsToApply);
+                for (PotionEffectInfo potionEffectInfo : systemType.potionEffectData) {
+                    if (data.getDouble(systemType.key) > potionEffectInfo.minValue && data.getDouble(systemType.key) < potionEffectInfo.maxValue) {
+                        addPotionToApply(potionEffectInfo.resourceLocation, potionEffectInfo.level, potionsToApply);
                     }
                 }
             }

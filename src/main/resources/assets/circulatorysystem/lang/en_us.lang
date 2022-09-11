@@ -29,4 +29,6 @@ key.circulatorysystem=Open Circulatory System Mod GUI
 gui.circulatorysystem.close=Close GUI
 gui.circulatorysystem.title=Body Stats
 
-gui.circulatorysystem.nothing=%s
+
+
+death.system_value_100_percent=%s died from %s
