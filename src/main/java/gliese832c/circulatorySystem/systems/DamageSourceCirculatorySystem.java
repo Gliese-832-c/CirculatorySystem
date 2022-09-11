@@ -1,5 +1,6 @@
 package gliese832c.circulatorySystem.systems;
 
+import gliese832c.circulatorySystem.CirculatorySystem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
@@ -21,10 +22,18 @@ public class DamageSourceCirculatorySystem extends DamageSource {
         String s = "death." + this.damageType;
         String s1 = s + ".player";
 
-        if (entitylivingbase != null && I18n.canTranslate(s1)) {
-            return new TextComponentTranslation(s1, new Object[]{entityLivingBaseIn.getDisplayName(), entitylivingbase.getDisplayName(), systemType.getName()});
+        if (systemType.customDeathMessage == null) {
+            if (entitylivingbase != null && I18n.canTranslate(s1)) {
+                return new TextComponentTranslation(s1, entityLivingBaseIn.getDisplayName(), entitylivingbase.getDisplayName(), systemType.getName());
+            } else {
+                return new TextComponentTranslation(s, entityLivingBaseIn.getDisplayName(), systemType.getName());
+            }
         } else {
-            return new TextComponentTranslation(s, new Object[]{entityLivingBaseIn.getDisplayName(), systemType.getName()});
+            if (entitylivingbase != null && I18n.canTranslate(s1)) {
+                return new TextComponentTranslation(systemType.customDeathMessage, entityLivingBaseIn.getDisplayName(), entitylivingbase.getDisplayName());
+            } else {
+                return new TextComponentTranslation(systemType.customDeathMessage, entityLivingBaseIn.getDisplayName());
+            }
         }
     }
 }

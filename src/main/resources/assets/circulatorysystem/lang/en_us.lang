@@ -32,3 +32,5 @@ gui.circulatorysystem.title=Body Stats
 
 
 death.system_value_100_percent=%s died from %s
+
+customDeathMessage.circulatorysystem.heart=%s suffered from Heart Failure
