@@ -93,22 +93,42 @@ public class SystemEffects {
     }
 
     private void applyPotionEffect(EntityPlayer player, String potionEffect, int level) {
-        if (player.isPotionActive(Potion.getPotionFromResourceLocation(potionEffect))) {
-            if (player.getActivePotionEffect(Potion.getPotionFromResourceLocation(potionEffect)).getDuration() < 50) {
+        if (level == 0) {
+            return;
+        } else {
+            if (level > 0) {
+                level--;
+            }
+            if (player.isPotionActive(Potion.getPotionFromResourceLocation(potionEffect))) {
+                if (player.getActivePotionEffect(Potion.getPotionFromResourceLocation(potionEffect)).getDuration() < 50) {
+                    player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(potionEffect), 200, level, false, false));
+                }
+            } else {
                 player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(potionEffect), 200, level, false, false));
             }
-        } else {
-            player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(potionEffect), 200, level, false, false));
         }
     }
 
     private int doPotionLevelMath(ArrayList<Integer> levels) {
         int tempVal = 0;
         for (int integer : levels) {
-            integer++;
-            tempVal += integer * integer;
+            if (integer < 0) {
+                int integerAbsolute = Math.abs(integer);
+                tempVal += (integerAbsolute * integerAbsolute) * -1;
+            } else {
+                integer++;
+                tempVal += integer * integer;
+            }
         }
-        int resultingPotionEffectLevelNotAdjusted = (int) Math.round(Math.sqrt((double) tempVal));
-        return resultingPotionEffectLevelNotAdjusted - 1;
+
+        if (tempVal > 0) {
+            return (int) Math.round(Math.sqrt((double) tempVal));
+        } else if (tempVal < 0) {
+            tempVal = Math.abs(tempVal);
+            tempVal = (int) Math.round(Math.sqrt((double) tempVal));
+            return tempVal * -1;
+        } else {
+            return 0;
+        }
     }
 }
