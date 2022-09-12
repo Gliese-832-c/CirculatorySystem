@@ -2,8 +2,7 @@ package gliese832c.circulatorySystem.proxy;
 
 import gliese832c.circulatorySystem.CirculatorySystem;
 import gliese832c.circulatorySystem.gui.EventNutritionKey;
-import gliese832c.circulatorySystem.gui.EventTexture;
-import gliese832c.circulatorySystem.gui.EventWorldTick;
+import gliese832c.circulatorySystem.item.CirculatoryItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -33,6 +32,7 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent preEvent)
     {
         super.preInit(preEvent);
+        CirculatoryItems.registerRenders();
     }
 
     @Override

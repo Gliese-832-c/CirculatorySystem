@@ -1,6 +1,6 @@
 package gliese832c.circulatorySystem.systems;
 
-import gliese832c.circulatorySystem.util.CirculatorySystemLogger;
+import gliese832c.circulatorySystem.util.CirculatoryLogger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -28,7 +28,7 @@ public class ConsumablesEvent {
         for (Consumable consumable : ConsumablesList.consumablesList) {
             String itemRegistryName = itemStack.getItem().getRegistryName().toString();
             if (itemRegistryName.equals(consumable.resourceLocation)) {
-                CirculatorySystemLogger.getLogger().error("Made it through the if check! " + consumable.resourceLocation);
+                CirculatoryLogger.getLogger().error("Made it through the if check! " + consumable.resourceLocation);
                 for (ConsumableEffect effect : consumable.consumableEffects) {
                     if (effect.isRelative) {
                         NBTHandler.setNBTdata(player, effect.key, NBTHandler.getNBTdata(player, effect.key) * (1 + effect.amount));

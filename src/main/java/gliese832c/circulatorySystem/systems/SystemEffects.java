@@ -1,5 +1,6 @@
 package gliese832c.circulatorySystem.systems;
 
+import gliese832c.circulatorySystem.systems.customEffects.CirculatoryCustomEffects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -39,7 +40,7 @@ public class SystemEffects {
     public void deathScan(EntityPlayer player, NBTTagCompound data) {
         for (SystemType systemType : SystemTypes.systemTypes) {
             if (systemType.dieOn100Percent && data.getDouble(systemType.key) >= 1.0) {
-                player.attackEntityFrom(new DamageSourceCirculatorySystem("system_value_100_percent", systemType).setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
+                player.attackEntityFrom(new DamageSourceCirculatory("system_value_100_percent", systemType).setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
             }
         }
     }
@@ -76,14 +77,22 @@ public class SystemEffects {
 
             // This applies the potion effects as specified in SystemTypes
             for (SystemType systemType : SystemTypes.systemTypes) {
-                for (PotionEffectInfo potionEffectInfo : systemType.potionEffectData) {
-                    if (data.getDouble(systemType.key) > potionEffectInfo.minValue && data.getDouble(systemType.key) < potionEffectInfo.maxValue) {
-                        addPotionToApply(potionEffectInfo.resourceLocation, potionEffectInfo.level, potionsToApply);
+                for (EffectInfo effectInfo : systemType.potionEffectData) {
+                    if (data.getDouble(systemType.key) > effectInfo.minValue && data.getDouble(systemType.key) < effectInfo.maxValue) {
+                        addPotionToApply(effectInfo.resourceLocation, effectInfo.level, potionsToApply);
                     }
                 }
             }
 
-            applyPotionEffects(player, potionsToApply);
+            ArrayList<TemporaryPotionEffectObject> potionsToApplyCopy = potionsToApply;
+            for (TemporaryPotionEffectObject tempEffect : potionsToApplyCopy) {
+                String[] arrOfStr = tempEffect.resourceLocation.split(":");
+                if (arrOfStr[0].equals("CUSTOM")) {
+                    applyCustomEffect(player, arrOfStr[1], doPotionLevelMath(tempEffect.levels));
+                } else {
+                    applyPotionEffect(player, tempEffect.resourceLocation, doPotionLevelMath(tempEffect.levels));
+                }
+            }
         }
     }
 
@@ -97,11 +106,11 @@ public class SystemEffects {
         potionsToApply.add(new TemporaryPotionEffectObject(potionEffect, new ArrayList<>(Arrays.asList(new Integer[] { level }))));
     }
 
-
-    private void applyPotionEffects(EntityPlayer player, ArrayList<TemporaryPotionEffectObject> potionsToApply) {
-        ArrayList<TemporaryPotionEffectObject> potionsToApplyCopy = potionsToApply;
-        for (TemporaryPotionEffectObject tempEffect : potionsToApplyCopy) {
-            applyPotionEffect(player, tempEffect.resourceLocation, doPotionLevelMath(tempEffect.levels));
+    private void applyCustomEffect(EntityPlayer player, String customEffect, int level) {
+        if (level == 0) {
+            return;
+        } else {
+            CirculatoryCustomEffects.getCustomEffectFromName(customEffect).applyEffect(player, level);
         }
     }
 
@@ -114,10 +123,10 @@ public class SystemEffects {
             }
             if (player.isPotionActive(Potion.getPotionFromResourceLocation(potionEffect))) {
                 if (player.getActivePotionEffect(Potion.getPotionFromResourceLocation(potionEffect)).getDuration() < 50) {
-                    player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(potionEffect), 200, level, false, false));
+                    player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(potionEffect), 200, level, true, false));
                 }
             } else {
-                player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(potionEffect), 200, level, false, false));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation(potionEffect), 200, level, true, false));
             }
         }
     }

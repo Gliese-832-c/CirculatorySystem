@@ -13,9 +13,9 @@ public class SystemType {
     public boolean dieOn100Percent;
     public String customDeathMessage;
     public ResourceLocation resourceLocation;
-    public ArrayList<PotionEffectInfo> potionEffectData;
+    public ArrayList<EffectInfo> potionEffectData;
 
-    public SystemType(String key, String chatInfoMessage, boolean dieOn100Percent, @Nullable String customDeathMessage, ResourceLocation resourceLocation, ArrayList<PotionEffectInfo> potionEffectData) {
+    public SystemType(String key, String chatInfoMessage, boolean dieOn100Percent, @Nullable String customDeathMessage, ResourceLocation resourceLocation, ArrayList<EffectInfo> potionEffectData) {
         this.key = key;
         this.chatInfoMessage = chatInfoMessage;
         this.dieOn100Percent = dieOn100Percent;

@@ -1,7 +1,7 @@
 package gliese832c.circulatorySystem.systems;
 
 import gliese832c.circulatorySystem.CirculatorySystem;
-import gliese832c.circulatorySystem.util.CirculatorySystemLogger;
+import gliese832c.circulatorySystem.util.CirculatoryLogger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -17,7 +17,7 @@ public class NBTHandler {
             if (checkWhetherSystemTypeIsValid(systemKey)) {
                 data.setDouble(systemKey, value);
             } else {
-                CirculatorySystemLogger.getLogger().error("System type '" + systemKey + "' does not exist!");
+                CirculatoryLogger.getLogger().error("System type '" + systemKey + "' does not exist!");
             }
         } else {
             data = new NBTTagCompound();
@@ -25,7 +25,7 @@ public class NBTHandler {
             if (checkWhetherSystemTypeIsValid(systemKey)) {
                 data.setDouble(systemKey, value);
             } else {
-                CirculatorySystemLogger.getLogger().error("System type '" + systemKey + "' does not exist!");
+                CirculatoryLogger.getLogger().error("System type '" + systemKey + "' does not exist!");
             }
             player.getEntityData().setTag(tagName, data);
         }
@@ -37,7 +37,7 @@ public class NBTHandler {
             if (checkWhetherSystemTypeIsValid(doubleKey)) {
                 return data.getDouble(doubleKey);
             } else {
-                CirculatorySystemLogger.getLogger().error("System type '" + doubleKey + "' does not exist!");
+                CirculatoryLogger.getLogger().error("System type '" + doubleKey + "' does not exist!");
                 return Double.NaN;
             }
         } else {

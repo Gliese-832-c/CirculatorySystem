@@ -1,17 +1,16 @@
 package gliese832c.circulatorySystem.systems;
 
-import gliese832c.circulatorySystem.CirculatorySystem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.translation.I18n;
 
-public class DamageSourceCirculatorySystem extends DamageSource {
+public class DamageSourceCirculatory extends DamageSource {
 
     public SystemType systemType;
 
-    public DamageSourceCirculatorySystem(String damageTypeIn, SystemType systemType) {
+    public DamageSourceCirculatory(String damageTypeIn, SystemType systemType) {
         super(damageTypeIn);
         this.systemType = systemType;
     }

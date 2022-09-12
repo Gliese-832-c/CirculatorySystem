@@ -6,10 +6,11 @@ import gliese832c.circulatorySystem.CirculatorySystem;
 import gliese832c.circulatorySystem.commands.CommandHandler;
 import gliese832c.circulatorySystem.gui.EventWorldTick;
 import gliese832c.circulatorySystem.gui.ModGuiHandler;
-import gliese832c.circulatorySystem.systems.ConsumablesEvent;
+import gliese832c.circulatorySystem.item.CirculatoryItems;
 import gliese832c.circulatorySystem.systems.ConsumablesList;
 import gliese832c.circulatorySystem.systems.SystemEffects;
 import gliese832c.circulatorySystem.systems.SystemTypes;
+import gliese832c.circulatorySystem.systems.customEffects.CirculatoryCustomEffects;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -20,8 +21,11 @@ public class CommonProxy
 {
     public void preInit(FMLPreInitializationEvent preEvent)
     {
-        SystemTypes.initEffectTypes();
-        ConsumablesList.initConsumablesList();
+        CirculatoryItems.init();
+        CirculatoryItems.register();
+
+        SystemTypes.initSystemTypes();
+        CirculatoryCustomEffects.initEffectTypes();
 
         MinecraftForge.EVENT_BUS.register(new EventWorldTick());
     }
@@ -33,6 +37,8 @@ public class CommonProxy
 
     public void postInit(FMLPostInitializationEvent postEvent)
     {
+        ConsumablesList.initConsumablesList();
+
         MinecraftForge.EVENT_BUS.register(new SystemEffects());
     }
 
