@@ -1,6 +1,8 @@
 package gliese832c.circulatorySystem.gui;
 
+import gliese832c.circulatorySystem.util.NBTHandler;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 

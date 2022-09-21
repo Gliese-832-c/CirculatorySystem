@@ -24,14 +24,16 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.lwjgl.input.Keyboard;
 
 public class ClientProxy extends CommonProxy {
-
-    public static NBTTagCompound data;
     public static KeyBinding keyCirculatorySystemGui;
+    public static ClientProxyData clientProxyData;
 
     @Override
     public void preInit(FMLPreInitializationEvent preEvent)
     {
         super.preInit(preEvent);
+
+        clientProxyData = new ClientProxyData();
+
         CirculatoryItems.registerRenders();
     }
 
@@ -39,6 +41,8 @@ public class ClientProxy extends CommonProxy {
     public void init(FMLInitializationEvent event)
     {
         super.init(event);
+
+        CirculatoryItems.colorizeItems();
 
         ClientRegistry.registerKeyBinding(keyCirculatorySystemGui = new KeyBinding("key.circulatorysystem", Keyboard.KEY_G, "Circulatory System"));
         MinecraftForge.EVENT_BUS.register(new EventNutritionKey());
@@ -93,5 +97,23 @@ public class ClientProxy extends CommonProxy {
         {
             return location;
         }
+    }
+
+
+
+    public class ClientProxyData {
+
+        public NBTTagCompound playerStatusTrackers = new NBTTagCompound();
+
+        public boolean heartAttack = false;
+        public int heartAttackLevel = 0;
+
+        public boolean isHavingTunnelVision = false;
+        public int tunnelVisionLevel = 0;
+
+        public boolean isHavingTunnelVisionBurst = false;
+        public int tunnelVisionBurstLevel = 0;
+
+        public boolean isPassedOut = false;
     }
 }

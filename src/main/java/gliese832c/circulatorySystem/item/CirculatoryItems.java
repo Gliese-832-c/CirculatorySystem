@@ -2,7 +2,9 @@ package gliese832c.circulatorySystem.item;
 
 import gliese832c.circulatorySystem.CirculatorySystem;
 import gliese832c.circulatorySystem.tab.CirculatoryTabs;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +16,7 @@ public class CirculatoryItems {
 
     public static void init()
     {
-        pill = withName(new ItemMeta(ItemEnums.PillType.class), "pill");
+        pill = withName(new ItemMeta(ItemEnums.PillType.class, "pill"), "pill");
     }
 
     public static void register()
@@ -28,6 +30,14 @@ public class CirculatoryItems {
         {
             registerRender(pill, i, ItemEnums.PillType.values()[i].getName());
         }
+    }
+
+
+
+    public static void colorizeItems() {
+        ItemColors itemColors = Minecraft.getMinecraft().getItemColors();
+
+        itemColors.registerItemColorHandler(new CirculatoryColorizationHandler.ColorizationHandlerPill(), pill);
     }
 
 
@@ -52,7 +62,7 @@ public class CirculatoryItems {
 
     public static void registerRender(Item item)
     {
-        ModelLoader.setCustomModelResourceLocation(item, 0,new ModelResourceLocation(item.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 
     public static void registerRender(Item item, int meta, String type)

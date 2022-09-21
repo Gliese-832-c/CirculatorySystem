@@ -1,7 +1,7 @@
 package gliese832c.circulatorySystem.gui;
 
-import gliese832c.circulatorySystem.systems.SystemType;
-import gliese832c.circulatorySystem.systems.SystemTypes;
+import gliese832c.circulatorySystem.statusTracking.StatusTracker;
+import gliese832c.circulatorySystem.statusTracking.StatusTrackers;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -11,8 +11,8 @@ public class EventTexture {
 
     @SubscribeEvent
     public static void TextureStitchEvent(TextureStitchEvent event) {
-        for (SystemType systemType : SystemTypes.systemTypes) {
-            event.getMap().registerSprite(systemType.resourceLocation);
+        for (StatusTracker statusTracker : StatusTrackers.statusTrackers) {
+            event.getMap().registerSprite(statusTracker.resourceLocation);
         }
     }
 }

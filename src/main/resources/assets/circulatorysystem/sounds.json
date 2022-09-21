@@ -1,0 +1,21 @@
+{
+  "event_heart_attack": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "circulatorysystem:event_heart_attack",
+        "stream": false
+      }
+    ]
+  },
+
+  "amogus": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "circulatorysystem:amogus",
+        "stream": false
+      }
+    ]
+  }
+}

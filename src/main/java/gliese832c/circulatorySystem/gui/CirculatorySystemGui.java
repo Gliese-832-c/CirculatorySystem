@@ -2,8 +2,10 @@ package gliese832c.circulatorySystem.gui;
 
 import gliese832c.circulatorySystem.CirculatorySystem;
 import gliese832c.circulatorySystem.proxy.ClientProxy;
-import gliese832c.circulatorySystem.systems.SystemType;
-import gliese832c.circulatorySystem.systems.SystemTypes;
+import gliese832c.circulatorySystem.statusTracking.StatusTracker;
+import gliese832c.circulatorySystem.statusTracking.StatusTrackers;
+import gliese832c.circulatorySystem.util.CirculatoryLogger;
+import gliese832c.circulatorySystem.util.NBTHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
@@ -12,6 +14,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
@@ -70,21 +73,18 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
 
     private void drawNutritionBars() {
         int i = 0;
-        for (SystemType systemType : SystemTypes.systemTypes) {
+
+        for (StatusTracker statusTracker : StatusTrackers.statusTrackers) {
+
+            NBTTagCompound data = tryGettingStatusTrackerData();
+
+            double currentValue = data != null ? data.getDouble(statusTracker.key) : 0.0d;
+
             // Calculate percentage width for nutrition bars
+            int systemBarDisplayWidth = (int) Math.round(currentValue * (double) NUTRITION_BAR_WIDTH);
 
-            double currentValue = ClientProxy.data.getDouble(systemType.key);
-            //double currentValue = NBTHandler.getNBTdata(player, systemType.key);
-            int systemBarDisplayWidth = (int) (currentValue * (double) NUTRITION_BAR_WIDTH);
-
-            // Draw icons
-            //itemRender.renderItemIntoGUI(systemType.item, left + NUTRITION_ICON_HORIZONTAL_OFFSET, top + NUTRITION_ICON_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE));
-
-            ResourceLocation currentResourceLocation = systemType.resourceLocation;
-            //mc.getTextureManager().bindTexture(currentResourceLocation);
-            //drawTexturedModalRect(left + NUTRITION_ICON_HORIZONTAL_OFFSET, top + NUTRITION_ICON_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE), 0, 0, 16, 16);
-            //drawTexturedModalRect(left + NUTRITION_ICON_HORIZONTAL_OFFSET, top + NUTRITION_ICON_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE), TextureAtlasSprite, 16, 16) {
-
+            // Draw texture
+            ResourceLocation currentResourceLocation = statusTracker.resourceLocation;
             GlStateManager.color(1F, 1F, 1F);
             TextureAtlasSprite sprite = mc.getTextureMapBlocks().getAtlasSprite(currentResourceLocation.toString());
             mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
@@ -123,15 +123,15 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
     @Override
     public void initGui() {
         // Calculate label offset for long nutrition names
-        for (SystemType systemType : SystemTypes.systemTypes) {
-            int systemTypeWidth = fontRenderer.getStringWidth(I18n.format(systemType.chatInfoMessage)); // Get width of localized string
+        for (StatusTracker statusTracker : StatusTrackers.statusTrackers) {
+            int systemTypeWidth = fontRenderer.getStringWidth(I18n.format(statusTracker.chatInfoMessage)); // Get width of localized string
             systemTypeWidth = (systemTypeWidth / 4) * 4; // Round to nearest multiple of 4
             if (systemTypeWidth > labelCharacterPadding)
                 labelCharacterPadding = systemTypeWidth;
         }
 
         // Update dynamic GUI size
-        super.updateContainerSize(GUI_BASE_WIDTH + labelCharacterPadding, GUI_BASE_HEIGHT + (SystemTypes.systemTypes.size() * NUTRITION_DISTANCE));
+        super.updateContainerSize(GUI_BASE_WIDTH + labelCharacterPadding, GUI_BASE_HEIGHT + (StatusTrackers.statusTrackers.size() * NUTRITION_DISTANCE));
 
         // Add Close button
         buttonList.add(buttonClose = new GuiButton(
@@ -150,6 +150,8 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
     // Called when needing to propagate the window with new information
     public void redrawLabels() {
 
+        NBTTagCompound data = tryGettingStatusTrackerData();
+
         // Clear existing labels for nutrition value or screen changes
         labelList.clear();
 
@@ -160,15 +162,17 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
 
         // Nutrients names and values
         int i = 0;
-        for (SystemType systemType : SystemTypes.systemTypes) {
+        for (StatusTracker statusTracker : StatusTrackers.statusTrackers) {
             // Create labels for each nutrient type name
             labelList.add(label = new GuiLabel(fontRenderer, 0, left + LABEL_NAME_HORIZONTAL_OFFSET, top + LABEL_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE), 0, 0, 0xffffffff));
-            label.addLine(I18n.format(systemType.chatInfoMessage)); // Add name from localization file
+            label.addLine(I18n.format(statusTracker.chatInfoMessage)); // Add name from localization file
 
             // Create percent value labels for each nutrient value
             labelList.add(label = new GuiLabel(fontRenderer, 0, left + LABEL_VALUE_HORIZONTAL_OFFSET + labelCharacterPadding, top + LABEL_VERTICAL_OFFSET + (i * NUTRITION_DISTANCE), 0, 0, 0xffffffff));
 
-            label.labels.add(getValueColorizedPercentage(ClientProxy.data.getDouble(systemType.key)));
+            String value = data != null ? getValueColorizedPercentage(data.getDouble(statusTracker.key)) : "Couldn't Fetch Value";
+            label.labels.add(value);
+            //label.addLine(getValueColorizedPercentage(data.getDouble(statusTracker.key)));
             //fontRenderer.drawString();
             i++;
         }
@@ -209,5 +213,16 @@ public class CirculatorySystemGui extends GuiScreenDynamic {
     @Override
     public void updateScreen() {
         redrawLabels();
+    }
+
+
+
+    private NBTTagCompound tryGettingStatusTrackerData() {
+        if (ClientProxy.clientProxyData.playerStatusTrackers == null) {
+            // Request player data
+            return null;
+        } else {
+            return ClientProxy.clientProxyData.playerStatusTrackers;
+        }
     }
 }

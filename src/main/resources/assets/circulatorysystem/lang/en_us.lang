@@ -16,6 +16,11 @@ chat.circulatorysystem.value_set=Value set!
 chat.circulatorysystem.value_null=System key does not exist!
 chat.circulatorysystem.values_reset=Values reset!
 
+chat.circulatorysystem.heart_attack=You are suffering from a heart attack!
+chat.circulatorysystem.heart_attack_over=The heart attack has ended!
+chat.circulatorysystem.nausea_burst=You are experiencing a sudden burst of nausea!
+chat.circulatorysystem.tunnel_vision_burst=You are experiencing a sudden burst of tunnel vision!
+
 
 
 itemGroup.circulatory_system.main=Circulatory System
@@ -24,6 +29,17 @@ commands.circulatorysystem.circulatorysystem_set.usage=/circulatorysystem_set <t
 commands.circulatorysystem.circulatorysystem_get.usage=/circulatorysystem_get <type> [player]
 commands.circulatorysystem.circulatorysystem_getall.usage=/circulatorysystem_getall [player]
 commands.circulatorysystem.circulatorysystem_reset.usage=/circulatorysystem_reset
+commands.circulatorysystem.circulatorysystem_induce.usage=/circulatorysystem_induce <player> <effect> [level]
+
+commands.circulatorysystem.induce_level_integer=§cLevel has to be an integer greater than 0!
+
+commands.circulatorysystem.caused_heart_attack=§aMade %s §asuffer from a heart attack!
+commands.circulatorysystem.caused_tunnel_vision_burst=§aMade %s §aexperience a tunnel vision burst!
+commands.circulatorysystem.caused_nausea_burst=§aMade %s §aexperience a nausea burst!
+
+commands.circulatorysystem.caused_all=§aMade %s §aexperience multiple horrible effects at once!
+
+
 
 key.circulatorysystem=Open Circulatory System Mod GUI
 
@@ -33,6 +49,9 @@ gui.circulatorysystem.title=Body Stats
 
 
 death.system_value_100_percent=%s died from %s
+death.attack.custom_effect_explosion=%s spontaneously released large amounts of thermal energy causing their untimely demise (They exploded)
+death.attack.critical_condition=%s died from Organ Failure
+death.attack.heart_attack=%s died from a Heart Attack
 
 customDeathMessage.circulatorysystem.heart=%s suffered from Heart Failure
 
@@ -40,3 +59,11 @@ customDeathMessage.circulatorysystem.heart=%s suffered from Heart Failure
 
 tooltip.circulatorysystem.hold_shift=Hold Shift to show health effects
 tooltip.circulatorysystem.is_relative=Relative to your current value
+
+
+item.circulatorysystem.pill.name=Pill
+
+
+
+chem.circulatorysystem.caffeine.name=Caffeine
+chem.circulatorysystem.cyanide.name=Cyanide

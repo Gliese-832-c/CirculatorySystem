@@ -1,8 +1,8 @@
 package gliese832c.circulatorySystem.commands;
 
-import gliese832c.circulatorySystem.systems.NBTHandler;
-import gliese832c.circulatorySystem.systems.SystemType;
-import gliese832c.circulatorySystem.systems.SystemTypes;
+import gliese832c.circulatorySystem.statusTracking.StatusTrackers;
+import gliese832c.circulatorySystem.util.NBTHandler;
+import gliese832c.circulatorySystem.statusTracking.StatusTracker;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -40,8 +40,8 @@ public class CommandGetSystem extends CommandBase {
             double value = 0.0d;
             if (checkWhetherSystemTypeIsValid(args[0])) {
                 value = NBTHandler.getNBTdata(player, args[0]);
-                SystemType systemType = SystemTypes.getSystemTypeFromKey(args[0]);
-                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString(I18n.translateToLocal(systemType.chatInfoMessage) + ": " + getValueColorizedPercentage(value)));
+                StatusTracker statusTracker = StatusTrackers.getSystemTypeFromKey(args[0]);
+                getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString(I18n.translateToLocal(statusTracker.chatInfoMessage) + ": " + getValueColorizedPercentage(value)));
             } else {
                 getCommandSenderAsPlayer(sender).sendMessage(new TextComponentString("§c" + I18n.translateToLocal("chat.circulatorysystem.value_null")));
             }

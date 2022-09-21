@@ -1,0 +1,23 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "type": {
+      "caffeine": {
+        "textures": {
+          "layer0": "circulatorysystem:items/pill_right",
+          "layer1": "circulatorysystem:items/pill_left"
+        }
+      },
+      "cyanide": {
+        "textures": {
+          "layer0": "circulatorysystem:items/pill_right",
+          "layer1": "circulatorysystem:items/pill_left"
+        }
+      }
+    }
+  }
+}

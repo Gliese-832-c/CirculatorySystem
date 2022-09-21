@@ -1,7 +1,7 @@
 package gliese832c.circulatorySystem.util;
 
-import gliese832c.circulatorySystem.systems.SystemType;
-import gliese832c.circulatorySystem.systems.SystemTypes;
+import gliese832c.circulatorySystem.statusTracking.StatusTracker;
+import gliese832c.circulatorySystem.statusTracking.StatusTrackers;
 
 public class StringProcessing {
 
@@ -28,14 +28,15 @@ public class StringProcessing {
 
     public static String getValueColorizedPercentage(double value) {
         double percentageValue = Math.round(value * 10000.0d) / 100.0d;
-        return determineDoubleColor(value) + percentageValue + "%";
+        String[] str = String.valueOf(percentageValue).split("\\.");
+        return determineDoubleColor(value) + percentageValue + (str[1].length() == 1 ? "0%" : "%");
     }
 
 
 
     public static boolean checkWhetherSystemTypeIsValid(String type) {
-        for (SystemType systemType : SystemTypes.systemTypes) {
-            if (type.equals(systemType.key)) {
+        for (StatusTracker statusTracker : StatusTrackers.statusTrackers) {
+            if (type.equals(statusTracker.key)) {
                 return true;
             }
         }
@@ -67,10 +68,12 @@ public class StringProcessing {
 
         double percentageValue = Math.round(value * 10000.0d) / 100.0d;
 
+        String[] str = String.valueOf(percentageValue).split("\\.");
+
         if (value > 0) {
-            return determineDoubleColorConsumableEffect(value) + "+" + percentageValue + "%";
+            return determineDoubleColorConsumableEffect(value) + "+" + percentageValue + (str[1].length() == 1 ? "0%" : "%");
         } else {
-            return determineDoubleColorConsumableEffect(value) + percentageValue + "%";
+            return determineDoubleColorConsumableEffect(value) + percentageValue + (str[1].length() == 1 ? "0%" : "%");
         }
     }
 }

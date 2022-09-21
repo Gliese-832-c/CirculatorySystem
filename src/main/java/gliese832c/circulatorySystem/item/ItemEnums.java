@@ -5,23 +5,23 @@ import net.minecraft.util.IStringSerializable;
 public class ItemEnums {
     public static enum PillType implements IStringSerializable, IMetaEnum
     {
-        CAFFEINE("caffeine", 0),
-        COCAINE("cocaine", 1),
-        SUS_AMOGUS("sus_amogus", 2),
-        GREGIFICATION_AGENT_37X("gregification_agent_37-x", 3),
-        G832C("g832c", 4),
-        TO_228("to_228", 5);
+        CAFFEINE("caffeine", 0, 0xFF3333, 0xFFFFFF),
+        COCAINE("cyanide", 1, 0x0092FF, 0xA8DAFF);
 
 
 
 
         private String name;
         private int id;
+        private int colorLeft;
+        private int colorRight;
 
-        private PillType(String name, int id)
+        private PillType(String name, int id, int colorLeft, int colorRight)
         {
             this.name = name;
             this.id = id;
+            this.colorLeft = colorLeft;
+            this.colorRight = colorRight;
         }
 
         @Override
@@ -40,6 +40,15 @@ public class ItemEnums {
         public int getID()
         {
             return id;
+        }
+
+        public int getColorLeft()
+        {
+            return colorLeft;
+        }
+        public int getColorRight()
+        {
+            return colorRight;
         }
     }
 }

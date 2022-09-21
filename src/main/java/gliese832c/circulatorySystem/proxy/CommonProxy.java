@@ -3,19 +3,22 @@ package gliese832c.circulatorySystem.proxy;
 import java.util.Locale;
 
 import gliese832c.circulatorySystem.CirculatorySystem;
-import gliese832c.circulatorySystem.commands.CommandHandler;
-import gliese832c.circulatorySystem.gui.EventWorldTick;
+import gliese832c.circulatorySystem.commands.CirculatoryCommandRegistry;
 import gliese832c.circulatorySystem.gui.ModGuiHandler;
 import gliese832c.circulatorySystem.item.CirculatoryItems;
-import gliese832c.circulatorySystem.systems.ConsumablesList;
-import gliese832c.circulatorySystem.systems.SystemEffects;
-import gliese832c.circulatorySystem.systems.SystemTypes;
-import gliese832c.circulatorySystem.systems.customEffects.CirculatoryCustomEffects;
+import gliese832c.circulatorySystem.network.*;
+import gliese832c.circulatorySystem.sound.CirculatorySounds;
+import gliese832c.circulatorySystem.statusTracking.ConsumablesList;
+import gliese832c.circulatorySystem.statusTracking.StatusTrackerEffects;
+import gliese832c.circulatorySystem.statusTracking.StatusTrackers;
+import gliese832c.circulatorySystem.statusTracking.customEffects.CirculatoryCustomEffects;
+import gliese832c.circulatorySystem.statusTracking.customEffects.auxiliaryCode.NetworkPacketsEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class CommonProxy
 {
@@ -23,11 +26,18 @@ public class CommonProxy
     {
         CirculatoryItems.init();
         CirculatoryItems.register();
+        CirculatorySounds.registerSounds();
 
-        SystemTypes.initSystemTypes();
+        StatusTrackers.initSystemTypes();
         CirculatoryCustomEffects.initEffectTypes();
 
-        MinecraftForge.EVENT_BUS.register(new EventWorldTick());
+        CirculatoryPacketHandler.CIRCULATORY_NETWORK_WRAPPER.registerMessage(CirculatoryMessagePlayerStatusTrackers.CirculatoryMessagePlayerStatusTrackersHandler.class, CirculatoryMessagePlayerStatusTrackers.class, 0, Side.CLIENT);
+
+        CirculatoryPacketHandler.CIRCULATORY_NETWORK_WRAPPER.registerMessage(CirculatoryMessageTunnelVision.CirculatoryMessageTunnelVisionHandler.class, CirculatoryMessageTunnelVision.class, 1, Side.CLIENT);
+        CirculatoryPacketHandler.CIRCULATORY_NETWORK_WRAPPER.registerMessage(CirculatoryMessageTunnelVisionBurst.CirculatoryMessageTunnelVisionBurstHandler.class, CirculatoryMessageTunnelVisionBurst.class, 2, Side.CLIENT);
+
+        CirculatoryPacketHandler.CIRCULATORY_NETWORK_WRAPPER.registerMessage(CirculatoryMessageHeartAttack.CirculatoryMessageHeartAttackHandler.class, CirculatoryMessageHeartAttack.class, 3, Side.CLIENT);
+        CirculatoryPacketHandler.CIRCULATORY_NETWORK_WRAPPER.registerMessage(CirculatoryMessageHeartAttackSound.CirculatoryMessageHeartAttackSoundHandler.class, CirculatoryMessageHeartAttackSound.class, 4, Side.CLIENT);
     }
 
     public void init(FMLInitializationEvent event)
@@ -39,11 +49,12 @@ public class CommonProxy
     {
         ConsumablesList.initConsumablesList();
 
-        MinecraftForge.EVENT_BUS.register(new SystemEffects());
+        MinecraftForge.EVENT_BUS.register(new StatusTrackerEffects());
+        MinecraftForge.EVENT_BUS.register(new NetworkPacketsEvent());
     }
 
     public void serverStart(FMLServerStartingEvent serverStartEvent) {
-        CommandHandler.registerCommands(serverStartEvent);
+        CirculatoryCommandRegistry.registerCommands(serverStartEvent);
     }
 
     public void onIdMapping(FMLModIdMappingEvent idMappingEvent)
