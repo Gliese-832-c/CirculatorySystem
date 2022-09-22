@@ -1,8 +1,8 @@
 package gliese832c.circulatorySystem.commands;
 
-import gliese832c.circulatorySystem.statusTracking.customEffects.effects.CustomEffectHeartAttack;
-import gliese832c.circulatorySystem.statusTracking.customEffects.effects.CustomEffectNauseaBursts;
-import gliese832c.circulatorySystem.statusTracking.customEffects.effects.CustomEffectTunnelVisionBursts;
+import gliese832c.circulatorySystem.mainModContent.customEffects.effects.CustomEffectHeartAttack;
+import gliese832c.circulatorySystem.mainModContent.customEffects.effects.CustomEffectNauseaBursts;
+import gliese832c.circulatorySystem.mainModContent.customEffects.effects.CustomEffectTunnelVisionBursts;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

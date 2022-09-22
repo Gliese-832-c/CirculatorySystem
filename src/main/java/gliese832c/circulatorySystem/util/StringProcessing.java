@@ -1,7 +1,7 @@
 package gliese832c.circulatorySystem.util;
 
-import gliese832c.circulatorySystem.statusTracking.StatusTracker;
-import gliese832c.circulatorySystem.statusTracking.StatusTrackers;
+import gliese832c.circulatorySystem.mainModContent.statusTrackers.statusTrackersRegistry.StatusTracker;
+import gliese832c.circulatorySystem.mainModContent.statusTrackers.statusTrackersRegistry.StatusTrackers;
 
 public class StringProcessing {
 
@@ -75,5 +75,11 @@ public class StringProcessing {
         } else {
             return determineDoubleColorConsumableEffect(value) + percentageValue + (str[1].length() == 1 ? "0%" : "%");
         }
+    }
+
+    public static String getValuePercentage(double value) {
+        double percentageValue = Math.round(value * 10000.0d) / 100.0d;
+        String[] str = String.valueOf(percentageValue).split("\\.");
+        return percentageValue + (str[1].length() == 1 ? "0%" : "%");
     }
 }

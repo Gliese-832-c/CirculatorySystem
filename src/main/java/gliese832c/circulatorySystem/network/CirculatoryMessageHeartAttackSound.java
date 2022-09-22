@@ -32,7 +32,8 @@ public class CirculatoryMessageHeartAttackSound implements IMessage {
             float volume = ((float) message.heartAttackLevel * 0.125f) + 0.5f;
             volume = Math.max(volume, 0.05f);
             volume = Math.min(volume, 1.0f);
-            Minecraft.getMinecraft().world.playSound(Minecraft.getMinecraft().player, Minecraft.getMinecraft().player.getPosition(), HEART_ATTACK, SoundCategory.BLOCKS, volume, 1.0f);
+            //Minecraft.getMinecraft().world.playSound(Minecraft.getMinecraft().player, Minecraft.getMinecraft().player.getPosition(), HEART_ATTACK, SoundCategory.BLOCKS, volume, 1.0f);
+            Minecraft.getMinecraft().player.playSound(HEART_ATTACK, volume, 1.0f);
             return null;
         }
     }

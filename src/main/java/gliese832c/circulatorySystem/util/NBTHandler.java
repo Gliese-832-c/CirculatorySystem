@@ -1,11 +1,11 @@
 package gliese832c.circulatorySystem.util;
 
 import gliese832c.circulatorySystem.CirculatorySystem;
-import gliese832c.circulatorySystem.statusTracking.StatusTracker;
-import gliese832c.circulatorySystem.statusTracking.StatusTrackers;
-import gliese832c.circulatorySystem.statusTracking.customEffects.CirculatoryCustomEffectDataType;
-import gliese832c.circulatorySystem.statusTracking.customEffects.CirculatoryCustomEffects;
-import gliese832c.circulatorySystem.statusTracking.customEffects.CirculatoryCustomEffect;
+import gliese832c.circulatorySystem.mainModContent.statusTrackers.statusTrackersRegistry.StatusTracker;
+import gliese832c.circulatorySystem.mainModContent.statusTrackers.statusTrackersRegistry.StatusTrackers;
+import gliese832c.circulatorySystem.mainModContent.customEffects.CirculatoryCustomEffectDataType;
+import gliese832c.circulatorySystem.mainModContent.customEffects.CirculatoryCustomEffects;
+import gliese832c.circulatorySystem.mainModContent.customEffects.CirculatoryCustomEffect;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 

@@ -58,7 +58,10 @@ customDeathMessage.circulatorysystem.heart=%s suffered from Heart Failure
 
 
 tooltip.circulatorysystem.hold_shift=Hold Shift to show health effects
-tooltip.circulatorysystem.is_relative=Relative to your current value
+tooltip.circulatorysystem.status_tracker_info=On Consumption:
+tooltip.circulatorysystem.chance=Chance
+tooltip.circulatorysystem.is_relative=Relative
+tooltip.circulatorysystem.is_relative_OLD=Relative to your current value
 
 
 item.circulatorysystem.pill.name=Pill

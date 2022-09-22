@@ -1,8 +1,8 @@
 package gliese832c.circulatorySystem.commands;
 
-import gliese832c.circulatorySystem.statusTracking.StatusTrackers;
+import gliese832c.circulatorySystem.mainModContent.statusTrackers.statusTrackersRegistry.StatusTrackers;
 import gliese832c.circulatorySystem.util.NBTHandler;
-import gliese832c.circulatorySystem.statusTracking.StatusTracker;
+import gliese832c.circulatorySystem.mainModContent.statusTrackers.statusTrackersRegistry.StatusTracker;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

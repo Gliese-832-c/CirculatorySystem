@@ -2,10 +2,8 @@ package gliese832c.circulatorySystem.gui;
 
 import gliese832c.circulatorySystem.CirculatorySystem;
 import gliese832c.circulatorySystem.proxy.ClientProxy;
-import gliese832c.circulatorySystem.statusTracking.StatusTracker;
-import gliese832c.circulatorySystem.statusTracking.StatusTrackers;
-import gliese832c.circulatorySystem.util.CirculatoryLogger;
-import gliese832c.circulatorySystem.util.NBTHandler;
+import gliese832c.circulatorySystem.mainModContent.statusTrackers.statusTrackersRegistry.StatusTracker;
+import gliese832c.circulatorySystem.mainModContent.statusTrackers.statusTrackersRegistry.StatusTrackers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
