@@ -23,12 +23,10 @@ public class CirculatoryConfig {
             "minecraft:fish:2|gastrointestinal:0.1:0.02:false",
             "minecraft:fish:3|gastrointestinal:0.2:1.0:false|liver:0.2:1.0:false|brain:0.05:1.0:false",
 
-
             // Golden Foods
             "minecraft:golden_carrot|eyes:-0.005:1.0:true",
             "minecraft:golden_apple:0|brain,heart,liver,lungs,eyes,muscles,immune_system,gastrointestinal,obesity,sugar:-0.005:1.0:true",
             "minecraft:golden_apple:1|brain,heart,liver,lungs,eyes,muscles,immune_system,gastrointestinal,obesity,sugar:-0.05:1.0:true",
-
 
             // Others
             "minecraft:rotten_flesh|gastrointestinal:0.3:0.5:false|liver:0.25:0.25:false|brain:0.2:0.01:false",
