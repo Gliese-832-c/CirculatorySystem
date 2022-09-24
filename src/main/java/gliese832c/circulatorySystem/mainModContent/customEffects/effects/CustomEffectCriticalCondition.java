@@ -16,7 +16,7 @@ public class CustomEffectCriticalCondition extends CirculatoryCustomEffect {
         long divisor = (long) (400.0d / ((double) level + 1.0d));
 
         if (worldTime % divisor == 0) {
-            player.attackEntityFrom(CirculatoryDamageTypes.CRITICAL_CONDITION, ((float) level * 0.5f) + 1.5f);
+            player.attackEntityFrom(CirculatoryDamageTypes.CRITICAL_CONDITION, ((float) level * 0.25f) + 0.75f);
         }
     }
 
