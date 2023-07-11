@@ -1,6 +1,6 @@
 package gliese832c.circulatorySystem.api;
 
-public class SystemTypeChanger {
+public class StatusTrackerChanger {
 
     // To any add-on devs that might be reading this: It's not my fault if you put a StatusTracker.key that does not exist here! :P
 

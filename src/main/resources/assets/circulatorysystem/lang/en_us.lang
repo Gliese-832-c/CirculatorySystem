@@ -2,11 +2,9 @@ chat.circulatorysystem.sugar=Blood Sugar
 chat.circulatorysystem.obesity=Obesity
 chat.circulatorysystem.gastrointestinal=Gastrointestinal Damage
 chat.circulatorysystem.immune_system=Immunocompromisation
-
 chat.circulatorysystem.liver=Liver Damage
 chat.circulatorysystem.lungs=Lung Damage
 chat.circulatorysystem.heart=Heart Damage
-
 chat.circulatorysystem.muscles=Musculature Damage
 chat.circulatorysystem.eyes=Eye Damage
 chat.circulatorysystem.brain=Brain Damage
@@ -20,6 +18,7 @@ chat.circulatorysystem.heart_attack=You are suffering from a heart attack!
 chat.circulatorysystem.heart_attack_over=The heart attack has ended!
 chat.circulatorysystem.nausea_burst=You are experiencing a sudden burst of nausea!
 chat.circulatorysystem.tunnel_vision_burst=You are experiencing a sudden burst of tunnel vision!
+chat.circulatorysystem.coughing=You are coughing!
 
 
 
@@ -45,6 +44,8 @@ key.circulatorysystem=Open Circulatory System Mod GUI
 
 gui.circulatorysystem.close=Close GUI
 gui.circulatorysystem.title=Body Stats
+
+gui.circulatorysystem.passed_out=You have passed out!
 
 
 

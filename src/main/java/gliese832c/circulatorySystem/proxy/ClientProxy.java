@@ -115,5 +115,7 @@ public class ClientProxy extends CommonProxy {
         public int tunnelVisionBurstLevel = 0;
 
         public boolean isPassedOut = false;
+
+        public boolean onetwelveCopypasta = false;
     }
 }

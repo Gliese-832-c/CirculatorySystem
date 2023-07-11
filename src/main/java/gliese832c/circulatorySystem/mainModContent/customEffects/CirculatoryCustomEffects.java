@@ -11,6 +11,8 @@ public class CirculatoryCustomEffects {
     public static ArrayList<CirculatoryCustomEffect> customEffectList = new ArrayList<CirculatoryCustomEffect>();
 
     public static void initEffectTypes() {
+        customEffectList.add(new CustomEffectCoughing("coughing"));
+
         customEffectList.add(new CustomEffectCriticalCondition("critical_condition"));     // Done!
 
         customEffectList.add(new CustomEffectHeartAttack("heart_attack",     // Done!
@@ -21,9 +23,15 @@ public class CirculatoryCustomEffects {
 
         customEffectList.add(new CustomEffectIncreasedHunger("increased_hunger"));     // Done!
 
+        customEffectList.add(new CustomEffectLowOxygen("low_oxygen"));
+        customEffectList.add(new CustomEffectLowStamina("low_stamina"));
+
         customEffectList.add(new CustomEffectNauseaBursts("nausea_bursts"));     // Done!
 
-        customEffectList.add(new CustomEffectPassingOutBursts("passing_out_bursts"));
+        customEffectList.add(new CustomEffectPassingOutBursts("passing_out_bursts",
+                new ArrayList<CirculatoryCustomEffectDataType>(Arrays.asList(
+                        new CirculatoryCustomEffectDataType("isPassedOut", CirculatoryCustomEffectDataType.DataTypes.BOOLEAN),
+                        new CirculatoryCustomEffectDataType("remainingPassedOutTime", CirculatoryCustomEffectDataType.DataTypes.INT)))));
 
         customEffectList.add(new CustomEffectTunnelVision("tunnel_vision",     // Done!
                 new ArrayList<CirculatoryCustomEffectDataType>(Arrays.asList(

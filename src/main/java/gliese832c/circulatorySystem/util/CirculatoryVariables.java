@@ -4,19 +4,24 @@ import gliese832c.circulatorySystem.CirculatorySystem;
 import net.minecraft.util.ResourceLocation;
 
 public class CirculatoryVariables {
-    public static final ResourceLocation tunnelVisionLevel1 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_1.png");
-    public static final ResourceLocation tunnelVisionLevel2 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_2.png");
-    public static final ResourceLocation tunnelVisionLevel3 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_3.png");
-    public static final ResourceLocation tunnelVisionLevel4 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_4.png");
-    public static final ResourceLocation tunnelVisionLevel5 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_5.png");
-    public static final ResourceLocation tunnelVisionLevelNaN = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_nan.png");
 
-    public static final ResourceLocation heartAttackLevel1 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_1.png");
-    public static final ResourceLocation heartAttackLevel2 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_2.png");
-    public static final ResourceLocation heartAttackLevel3 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_3.png");
-    public static final ResourceLocation heartAttackLevel4 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_4.png");
-    public static final ResourceLocation heartAttackLevel5 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_5.png");
-    public static final ResourceLocation heartAttackLevelNaN = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_nan.png");
+    public static class ResourceLocations {
+        public static final ResourceLocation tunnelVisionLevel1 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_1.png");
+        public static final ResourceLocation tunnelVisionLevel2 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_2.png");
+        public static final ResourceLocation tunnelVisionLevel3 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_3.png");
+        public static final ResourceLocation tunnelVisionLevel4 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_4.png");
+        public static final ResourceLocation tunnelVisionLevel5 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_5.png");
+        public static final ResourceLocation tunnelVisionLevelNaN = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/tunnel_vision_nan.png");
+
+        public static final ResourceLocation heartAttackLevel1 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_1.png");
+        public static final ResourceLocation heartAttackLevel2 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_2.png");
+        public static final ResourceLocation heartAttackLevel3 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_3.png");
+        public static final ResourceLocation heartAttackLevel4 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_4.png");
+        public static final ResourceLocation heartAttackLevel5 = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_5.png");
+        public static final ResourceLocation heartAttackLevelNaN = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/heart_attack_nan.png");
+
+        public static final ResourceLocation passedOut = new ResourceLocation(CirculatorySystem.MOD_ID, "textures/overlays/passed_out.png");
+    }
 
 
     public static class FormattingCodes {
@@ -25,6 +30,6 @@ public class CirculatoryVariables {
                                     DARK_GRAY = "§8", BLUE = "§9", GREEN = "§a", AQUA = "§b",
                                     RED = "§c", LIGHT_PURPLE = "§d", YELLOW = "§e", WHITE = "§f",
 
-                                    UNDERLINE = "§u", BOLD = "§u", ITALIC = "§u", STRIKETHROUGH = "§u", OBFUSCATE = "§u", RESET = "§u";
+                                    UNDERLINE = "§u", BOLD = "§l", ITALIC = "§o", STRIKETHROUGH = "§m", OBFUSCATE = "§k", RESET = "§r";
     }
 }

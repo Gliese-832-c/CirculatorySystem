@@ -8,10 +8,12 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class CirculatorySounds {
 
     public static SoundEvent HEART_ATTACK;
+    public static SoundEvent COUGHING;
     public static SoundEvent AMOGUS;
 
     public static void registerSounds() {
         HEART_ATTACK = registerSound("event_heart_attack");
+        COUGHING = registerSound("coughing");
         AMOGUS = registerSound("amogus");
     }
 

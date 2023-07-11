@@ -9,6 +9,16 @@
     ]
   },
 
+  "coughing": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "circulatorysystem:coughing",
+        "stream": false
+      }
+    ]
+  },
+
   "amogus": {
     "category": "block",
     "sounds": [

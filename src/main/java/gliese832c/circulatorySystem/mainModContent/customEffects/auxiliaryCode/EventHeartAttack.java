@@ -11,7 +11,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import static gliese832c.circulatorySystem.util.CirculatoryVariables.*;
+import static gliese832c.circulatorySystem.util.CirculatoryVariables.ResourceLocations.*;
 
 @Mod.EventBusSubscriber
 public class EventHeartAttack {
